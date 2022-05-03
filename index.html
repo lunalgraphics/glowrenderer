@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <title>among</title>
+    <link href="style.css" rel="stylesheet" type="text/css" />
+    <script src="lib/ygui.js"></script>
+  </head>
+  <body style="margin: 0; width: 100vw; height: 100vh;">
+    <div id="guicontainer" style="width: 420px; box-sizing: border-box; position: fixed; right: 0; top: 0; height: 100vh;"></div>
+    <div style="position: fixed; left: 0; top: 0; height: 100vh; width: calc(100vw - 420px); text-align: center;">
+        <div style="position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%);">
+            <canvas width="640" height="427" style="width: 600px;"></canvas>
+            <br />
+            <table id="processPreviews" style="border-spacing: 0; position: relative; left: 50%; transform: translateX(-50%);">
+                <tr></tr>
+                <tr></tr>
+            </table>
+        </div>
+    </div>
+    <script src="script.js"></script>
+  </body>
+</html>
