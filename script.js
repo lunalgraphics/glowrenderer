@@ -1,7 +1,7 @@
 // define default options
 var globals = {
     baseURI: "testimage.jpg",
-    threshold: 1,
+    threshold: 246,
     glowLayers: 15,
     glowRadius: 0.1,
     colorize: true,
@@ -53,13 +53,7 @@ function mainProcess(inputData=globals) {
         displayProcessPreview(canv, "original image");
 
         // darken darkest pixels based on "threshold" input - isolates brightest pixels (hopefully, the light sources)
-        ctx.fillStyle = `rgba(0, 0, 0, ${inputData.threshold})`;
-        ctx.globalCompositeOperation = "overlay";
-        for (var i = 0; i < 5; i++) {
-            ctx.fillRect(0, 0, canv.width, canv.height);
-        }
-        ctx.restore();
-        ctx.save();
+        isolateHighlights(ctx, inputData.threshold);
     
         displayProcessPreview(canv, "light sources");
     
@@ -121,7 +115,7 @@ ygui.buildGUIsection([
         "label": "Threshold",
         "type": "number",
         "id": "threshold",
-        "attr": { "value": 1 }
+        "attr": { "value": 246 }
     },
     {
         "label": "Glow layers",
