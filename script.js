@@ -1,6 +1,6 @@
 // define default options
 var globals = {
-    baseURI: "testimage.jpg",
+    baseIMG: new Image(),
     threshold: 246,
     glowLayers: 15,
     glowRadius: 0.1,
@@ -43,11 +43,10 @@ function mainProcess(inputData=globals) {
         tr.innerHTML = "";
     }
     
-    loadImage(inputData.baseURI, function() {
         var canv = document.querySelector("canvas");
         var ctx = canv.getContext("2d");
         ctx.restore(); // if possible
-        ctx.drawImage(this, 0, 0);
+        ctx.drawImage(inputData.baseIMG, 0, 0);
         ctx.save(); // save default context
     
         displayProcessPreview(canv, "original image");
@@ -90,19 +89,16 @@ function mainProcess(inputData=globals) {
     
             displayProcessPreview(canv, "lights + glow");
     
-            loadImage(inputData.baseURI, function() {
                 // composite together glows + original image, resulting in final output
                 ctx.restore();
                 ctx.save();
                 ctx.globalCompositeOperation = "screen";
-                ctx.drawImage(this, 0, 0);
-            });
+                ctx.drawImage(inputData.baseIMG, 0, 0);
         });
-        
-    });
+    
 }
 
-mainProcess(JSON.stringify(globals));
+//mainProcess(JSON.stringify(globals));
 
 // GUI - uses a library that I built
 ygui.buildGUIsection([
@@ -174,10 +170,10 @@ document.querySelector("#imgupload").addEventListener("change", function() {
     var fR = new FileReader();
     fR.addEventListener("loadend", function(e) {
         var imageuri = e.target.result;
-
-        globals.baseURI = imageuri;
+        
         var image = new Image();
         image.src = imageuri;
+        globals.baseIMG = image;
         image.addEventListener("load", function() {
             document.querySelector("canvas").width = this.width;
             document.querySelector("canvas").height = this.height;
