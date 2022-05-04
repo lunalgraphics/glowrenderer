@@ -111,7 +111,7 @@ ygui.buildGUIsection([
         "label": "Threshold",
         "type": "number",
         "id": "threshold",
-        "attr": { "value": 246 }
+        "attr": { "value": 246, "min": 0, "max": 254 }
     },
     {
         "label": "Glow layers",
