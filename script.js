@@ -106,11 +106,11 @@ mainProcess(JSON.stringify(globals));
 
 // GUI - uses a library that I built
 ygui.buildGUIsection([
-    {
+    /*{
         "label": "Base image",
         "type": "file",
         "id": "imgupload"
-    },
+    },*/
     {
         "label": "Threshold",
         "type": "number",
@@ -182,6 +182,7 @@ document.querySelector("#imgupload").addEventListener("change", function() {
             document.querySelector("canvas").width = this.width;
             document.querySelector("canvas").height = this.height;
             mainProcess(globals);
+            document.querySelector("#landingscreen").style.display = "none";
         });
     });
     fR.readAsDataURL(file);
