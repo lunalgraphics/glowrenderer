@@ -42,59 +42,59 @@ function mainProcess(inputData=globals) {
     for (var tr of document.querySelectorAll("#processPreviews tr")) {
         tr.innerHTML = "";
     }
-    
-        var canv = document.querySelector("canvas");
-        var ctx = canv.getContext("2d");
-        ctx.restore(); // if possible
-        ctx.drawImage(inputData.baseIMG, 0, 0);
-        ctx.save(); // save default context
-    
-        displayProcessPreview(canv, "original image");
 
-        // darken darkest pixels based on "threshold" input - isolates brightest pixels (hopefully, the light sources)
-        isolateHighlights(ctx, inputData.threshold);
-    
-        displayProcessPreview(canv, "light sources");
-    
-        loadImage(canv.toDataURL(), function() {
-            // blur the light sources by different amounts and composite them together, resulting in a diffused light bloom effect
-            for (var i = 0; i < inputData.glowLayers; i++) {
-                // setting the blur amount based on a quadratic function gives a very nice, diffused-looking result
-                var blurRadius = (i + 1) ** 2 * inputData.glowRadius;
-                ctx.restore();
-                ctx.save();
-                ctx.filter = `blur(${blurRadius}px)`;
-                ctx.globalCompositeOperation = "screen";
-                ctx.drawImage(this, 0, 0);
-            }
-    
-            if (inputData.colorize) {
-                // Override light color based on user input
-                ctx.restore();
-                ctx.save();
-                ctx.fillStyle = inputData.tintcolor;
-                ctx.globalCompositeOperation = "color";
-                ctx.fillRect(0, 0, canv.width, canv.height);
-                ctx.globalCompositeOperation = "soft-light";
-                ctx.fillRect(0, 0, canv.width, canv.height);
-            }
-            else {
-                // Otherwise, brighten bloom slightly to compensate
-                ctx.restore();
-                ctx.save();
-                ctx.fillStyle = "rgba(255, 255, 255, 0.2)";
-                ctx.globalCompositeOperation = "soft-light";
-                ctx.fillRect(0, 0, canv.width, canv.height);
-            }
-    
-            displayProcessPreview(canv, "lights + glow");
-    
-                // composite together glows + original image, resulting in final output
-                ctx.restore();
-                ctx.save();
-                ctx.globalCompositeOperation = "screen";
-                ctx.drawImage(inputData.baseIMG, 0, 0);
-        });
+    var canv = document.querySelector("canvas");
+    var ctx = canv.getContext("2d");
+    ctx.restore(); // if possible
+    ctx.drawImage(inputData.baseIMG, 0, 0);
+    ctx.save(); // save default context
+
+    displayProcessPreview(canv, "original image");
+
+    // darken darkest pixels based on "threshold" input - isolates brightest pixels (hopefully, the light sources)
+    isolateHighlights(ctx, inputData.threshold);
+
+    displayProcessPreview(canv, "light sources");
+
+    loadImage(canv.toDataURL(), function() {
+        // blur the light sources by different amounts and composite them together, resulting in a diffused light bloom effect
+        for (var i = 0; i < inputData.glowLayers; i++) {
+            // setting the blur amount based on a quadratic function gives a very nice, diffused-looking result
+            var blurRadius = (i + 1) ** 2 * inputData.glowRadius;
+            ctx.restore();
+            ctx.save();
+            ctx.filter = `blur(${blurRadius}px)`;
+            ctx.globalCompositeOperation = "screen";
+            ctx.drawImage(this, 0, 0);
+        }
+
+        if (inputData.colorize) {
+            // Override light color based on user input
+            ctx.restore();
+            ctx.save();
+            ctx.fillStyle = inputData.tintcolor;
+            ctx.globalCompositeOperation = "color";
+            ctx.fillRect(0, 0, canv.width, canv.height);
+            ctx.globalCompositeOperation = "soft-light";
+            ctx.fillRect(0, 0, canv.width, canv.height);
+        }
+        else {
+            // Otherwise, brighten bloom slightly to compensate
+            ctx.restore();
+            ctx.save();
+            ctx.fillStyle = "rgba(255, 255, 255, 0.2)";
+            ctx.globalCompositeOperation = "soft-light";
+            ctx.fillRect(0, 0, canv.width, canv.height);
+        }
+
+        displayProcessPreview(canv, "lights + glow");
+
+        // composite together glows + original image, resulting in final output
+        ctx.restore();
+        ctx.save();
+        ctx.globalCompositeOperation = "screen";
+        ctx.drawImage(inputData.baseIMG, 0, 0);
+    });
     
 }
 
