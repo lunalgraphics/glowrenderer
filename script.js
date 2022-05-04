@@ -4,7 +4,7 @@ var globals = {
     threshold: 246,
     glowLayers: 15,
     glowRadius: 0.1,
-    colorize: true,
+    colorize: false,
     tintcolor: "#FFA000",
     showPreview: true,
 };
@@ -129,7 +129,7 @@ ygui.buildGUIsection([
         "label": "Colorize?",
         "type": "checkbox",
         "id": "colorize",
-        "attr": { "checked": true }
+        "attr": { "checked": false }
     },
     {
         "label": "Color",
