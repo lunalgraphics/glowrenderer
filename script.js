@@ -162,6 +162,16 @@ for (var x of ["threshold", "glowLayers", "glowRadius", "colorize", "tintcolor",
         if (globals.showPreview) {
             mainProcess(globals);
         }
+        else {
+            mainProcess({
+                baseIMG: globals.baseIMG,
+                threshold: 255,
+                glowLayers: 0,
+                glowRadius: 0,
+                colorize: false,
+                tintcolor: "#000000"
+            });
+        }
     });
 }
 // handle image upload
