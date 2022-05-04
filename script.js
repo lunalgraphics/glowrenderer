@@ -16,7 +16,7 @@ function loadImage(imageURI, onLoad) {
     img.src = imageURI;
 }
 
-function displayProcessPreview(canvas, label) {
+/*function displayProcessPreview(canvas, label) {
     // this function helps show and label different steps of the process.
     var rows = document.querySelectorAll("#processPreviews tr");
     var processPreview = new Image();
@@ -31,30 +31,30 @@ function displayProcessPreview(canvas, label) {
     textcell.style.textAlign = "center";
     rows[0].appendChild(imagecell);
     rows[1].appendChild(textcell);
-}
+}*/
 
 function mainProcess(inputData=globals) {
     if (typeof inputData == "string") {
         inputData = JSON.parse(inputData);
     }
-    
+    /*
     // clear old process previews, if any
     for (var tr of document.querySelectorAll("#processPreviews tr")) {
         tr.innerHTML = "";
     }
-
+    */
     var canv = document.querySelector("canvas");
     var ctx = canv.getContext("2d");
     ctx.restore(); // if possible
     ctx.drawImage(inputData.baseIMG, 0, 0);
     ctx.save(); // save default context
 
-    displayProcessPreview(canv, "original image");
+    //displayProcessPreview(canv, "original image");
 
     // darken darkest pixels based on "threshold" input - isolates brightest pixels (hopefully, the light sources)
     isolateHighlights(ctx, inputData.threshold);
 
-    displayProcessPreview(canv, "light sources");
+    //displayProcessPreview(canv, "light sources");
 
     loadImage(canv.toDataURL(), function() {
         // blur the light sources by different amounts and composite them together, resulting in a diffused light bloom effect
@@ -87,7 +87,7 @@ function mainProcess(inputData=globals) {
             ctx.fillRect(0, 0, canv.width, canv.height);
         }
 
-        displayProcessPreview(canv, "lights + glow");
+        //displayProcessPreview(canv, "lights + glow");
 
         // composite together glows + original image, resulting in final output
         ctx.restore();
