@@ -129,7 +129,7 @@ ygui.buildGUIsection([
         "label": "Colorize?",
         "type": "checkbox",
         "id": "colorize",
-        "attr": { "checked": false }
+        "attr": {}
     },
     {
         "label": "Color",
