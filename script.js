@@ -204,3 +204,25 @@ document.querySelector("#imgupload").addEventListener("change", function() {
     });
     fR.readAsDataURL(file);
 });
+
+function canvDownload() {
+    var a = document.createElement("a");
+    a.href = document.querySelector("canvas").toDataURL();
+    a.download = "superbloomed.png";
+    a.click();
+}
+var exportpanel = document.createElement("div");
+exportpanel.id = "exportpanel";
+document.querySelector("#guicontainer").appendChild(exportpanel);
+var fullexportbtn = document.createElement("button");
+fullexportbtn.innerText = "Export Full Image";
+exportpanel.appendChild(fullexportbtn);
+fullexportbtn.addEventListener("click", function() {
+    mainProcess(globals, canvDownload, false);
+});
+var layerexportbtn = document.createElement("button");
+layerexportbtn.innerText = "Export Bloom Layer";
+exportpanel.appendChild(layerexportbtn);
+layerexportbtn.addEventListener("click", function() {
+    mainProcess(globals, canvDownload, true);
+});
