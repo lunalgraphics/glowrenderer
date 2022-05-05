@@ -33,7 +33,7 @@ function loadImage(imageURI, onLoad) {
     rows[1].appendChild(textcell);
 }*/
 
-function mainProcess(inputData=globals, callback=function() {}) {
+function mainProcess(inputData=globals, callback=function() {}, layerOnly=false) {
     document.body.style.cursor = "wait";
     
     if (typeof inputData == "string") {
@@ -90,6 +90,11 @@ function mainProcess(inputData=globals, callback=function() {}) {
         }
 
         //displayProcessPreview(canv, "lights + glow");
+        if (layerOnly) {
+            callback();
+            document.body.style.cursor = "";
+            return;
+        }
 
         // composite together glows + original image, resulting in final output
         ctx.restore();
