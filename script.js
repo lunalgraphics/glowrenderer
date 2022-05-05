@@ -33,7 +33,7 @@ function loadImage(imageURI, onLoad) {
     rows[1].appendChild(textcell);
 }*/
 
-function mainProcess(inputData=globals) {
+function mainProcess(inputData=globals, callback=function() {}) {
     document.body.style.cursor = "wait";
     
     if (typeof inputData == "string") {
@@ -98,6 +98,8 @@ function mainProcess(inputData=globals) {
         ctx.drawImage(inputData.baseIMG, 0, 0);
         
         document.body.style.cursor = "";
+        
+        callback();
     });
     
 }
