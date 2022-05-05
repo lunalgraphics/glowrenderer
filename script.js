@@ -34,6 +34,8 @@ function loadImage(imageURI, onLoad) {
 }*/
 
 function mainProcess(inputData=globals) {
+    document.body.style.cursor = "wait";
+    
     if (typeof inputData == "string") {
         inputData = JSON.parse(inputData);
     }
@@ -94,6 +96,8 @@ function mainProcess(inputData=globals) {
         ctx.save();
         ctx.globalCompositeOperation = "screen";
         ctx.drawImage(inputData.baseIMG, 0, 0);
+        
+        document.body.style.cursor = "";
     });
     
 }
