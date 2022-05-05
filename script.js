@@ -220,6 +220,8 @@ exportpanel.appendChild(fullexportbtn);
 fullexportbtn.addEventListener("click", function() {
     mainProcess(globals, canvDownload, false);
 });
+var br = document.createElement("br");
+exportpanel.appendChild(br);
 var layerexportbtn = document.createElement("button");
 layerexportbtn.innerText = "Export Bloom Layer";
 exportpanel.appendChild(layerexportbtn);

@@ -20,3 +20,9 @@ canvas {
 #guicontainer {
     width: 420px; box-sizing: border-box; position: fixed; right: 0; top: 0; height: 100vh;
 }
+
+#exportpanel {
+    width: 100%;
+    box-sizing: border-box;
+    text-align: center;
+}
