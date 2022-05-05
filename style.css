@@ -26,3 +26,7 @@ canvas {
     box-sizing: border-box;
     text-align: center;
 }
+
+#imgupload {
+    display: none;
+}

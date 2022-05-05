@@ -204,6 +204,9 @@ document.querySelector("#imgupload").addEventListener("change", function() {
     });
     fR.readAsDataURL(file);
 });
+document.querySelector("#uploadButton").addEventListener("click", function() {
+    document.querySelector("#imgupload").click();
+});
 
 function canvDownload() {
     var a = document.createElement("a");
