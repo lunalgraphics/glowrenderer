@@ -34,7 +34,7 @@ function loadImage(imageURI, onLoad) {
 }*/
 
 function mainProcess(inputData=globals, callback=function() {}, layerOnly=false) {
-    
+    document.querySelector("#waitCover").style.display = "block";
     if (typeof inputData == "string") {
         inputData = JSON.parse(inputData);
     }
@@ -84,6 +84,7 @@ function mainProcess(inputData=globals, callback=function() {}, layerOnly=false)
         //displayProcessPreview(canv, "lights + glow");
         if (layerOnly) {
             callback();
+            document.querySelector("#waitCover").style.display = "none";
             return;
         }
 
@@ -94,6 +95,7 @@ function mainProcess(inputData=globals, callback=function() {}, layerOnly=false)
         ctx.drawImage(inputData.baseIMG, 0, 0);
         
         callback();
+        document.querySelector("#waitCover").style.display = "none";
     });
     
 }
