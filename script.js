@@ -34,7 +34,6 @@ function loadImage(imageURI, onLoad) {
 }*/
 
 function mainProcess(inputData=globals, callback=function() {}, layerOnly=false) {
-    document.body.style.cursor = "wait";
     
     if (typeof inputData == "string") {
         inputData = JSON.parse(inputData);
@@ -85,7 +84,6 @@ function mainProcess(inputData=globals, callback=function() {}, layerOnly=false)
         //displayProcessPreview(canv, "lights + glow");
         if (layerOnly) {
             callback();
-            document.body.style.cursor = "";
             return;
         }
 
@@ -94,8 +92,6 @@ function mainProcess(inputData=globals, callback=function() {}, layerOnly=false)
         ctx.save();
         ctx.globalCompositeOperation = "screen";
         ctx.drawImage(inputData.baseIMG, 0, 0);
-        
-        document.body.style.cursor = "";
         
         callback();
     });
