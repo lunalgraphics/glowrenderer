@@ -1,11 +1,11 @@
 // define default options
 var globals = {
     baseIMG: new Image(),
-    threshold: 246,
-    glowLayers: 15,
-    glowRadius: 0.1,
+    threshold: 222,
+    glowLayers: 16,
+    glowRadius: 1,
     colorize: false,
-    tintcolor: "#FFA000",
+    tintcolor: "#FF5500",
     showPreview: true,
 };
 
@@ -113,19 +113,19 @@ ygui.buildGUIsection([
         "label": "Threshold",
         "type": "number",
         "id": "threshold",
-        "attr": { "value": 246, "min": 0, "max": 254 }
+        "attr": { "value": 222, "min": 0, "max": 254 }
     },
     {
         "label": "Glow layers",
         "type": "number",
         "id": "glowLayers",
-        "attr": { "value": 15 }
+        "attr": { "value": 16 }
     },
     {
         "label": "Glow radius",
         "type": "number",
         "id": "glowRadius",
-        "attr": { "value": 0.1 }
+        "attr": { "value": 1 }
     },
     {
         "label": "Colorize?",
@@ -137,7 +137,7 @@ ygui.buildGUIsection([
         "label": "Color",
         "type": "color",
         "id": "tintcolor",
-        "attr": { "value": "#FFA000" }
+        "attr": { "value": "#FF5500" }
     },
     {
         "label": "Preview",
