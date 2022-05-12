@@ -9,7 +9,6 @@ var globals = {
 };
 
 function loadImage(imageURI, onLoad) {
-    // loads image with URI imageURI and calls onLoad(). within the onLoad function, the keyword `this` can be used to reference the image object.
     var img = new Image();
     img.onload = onLoad;
     img.src = imageURI;
