@@ -1,11 +1,22 @@
+:root {
+    --ux-font: "Segoe UI", Frutiger, "Frutiger Linotype", "Dejavu Sans", "Helvetica Neue", Arial, sans-serif;
+    --special-color: #9800B0;
+    --field-color: #0F0F0F;
+    --bg-color: #1E1E1E;
+}
+
 #landingscreen {
     position: fixed;
-    background-color: white;
+    background-color: var(--bg-color);
     z-index: 69;
     top: 0;
     left: 0;
     width: 100vw;
     height: 100vh;
+}
+
+body {
+    background-color: var(--bg-color);
 }
 
 .centeredblock {
@@ -40,4 +51,36 @@ canvas {
     width: 100vw;
     height: 100vh;
     z-index: 100;
+}
+
+.ygui-input {
+    background-color: var(--field-color);
+    border: 0;
+    outline: none!important;
+    color: whitesmoke;
+    padding: 4px;
+    width: 50px;
+    text-align: right;
+    accent-color: var(--special-color);
+    font-family: var(--ux-font);
+}
+
+.ygui-label {
+    color: whitesmoke;
+    font-family: var(--ux-font);
+}
+
+button {
+    font-family: var(--ux-font);
+    color: whitesmoke;
+    background-color: var(--special-color);
+    border: 0;
+    border-radius: 3.4px;
+    padding: 6px 9px;
+    margin: 5px;
+    transition: background-color 0.5s;
+}
+
+button:hover {
+    background-color: #4B0057;
 }
