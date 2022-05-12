@@ -95,7 +95,7 @@ ygui.buildGUIsection([
         "label": "Color",
         "type": "color",
         "id": "tintcolor",
-        "attr": { "value": "#FF5500" }
+        "attr": { "value": "#FF5500", "disabled": "true" }
     },
     {
         "label": "Preview",
@@ -179,3 +179,15 @@ exportpanel.appendChild(layerexportbtn);
 layerexportbtn.addEventListener("click", function() {
     mainProcess(globals, canvDownload, true);
 });
+
+document.querySelector("#colorize").addEventListener("change", function(e) {
+    if (this.checked) {
+        document.querySelector("#tintcolor").removeAttribute("disabled");
+        document.querySelector("label[for=tintcolor]").style.opacity = "";
+    }
+    else {
+        document.querySelector("#tintcolor").setAttribute("disabled", "true");
+        document.querySelector("label[for=tintcolor]").style.opacity = "0.5";
+    }
+});
+document.querySelector("label[for=tintcolor]").style.opacity = "0.5";
