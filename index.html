@@ -17,11 +17,16 @@
     </div>
     <div id="waitCover"></div>
     <div id="landingscreen">
-        <div class="centeredblock">
-            <input type="file" accept="image/*" id="imgupload" />
-
-            <button id="uploadButton">Upload Image</button>
+        <div style="position: absolute; width: 40vw; right: 0; top: 0; height: 100vh;">
+            <div class="centeredblock" style="text-align: center;">
+                <input type="file" accept="image/*" id="imgupload" />
+                
+                <img src="banner_plain.png" width="512px" style="mix-blend-mode: screen;" />
+                <br />
+                <button id="uploadButton">Upload Image</button>
+            </div>
         </div>
+        <div style="position: absolute; width: 60vw; left: 0; top: 0; height: 100vh; background-image: url('coverart.jpg'); background-size: cover; background-position: center;"></div>
     </div>
     <script src="script.js"></script>
   </body>
