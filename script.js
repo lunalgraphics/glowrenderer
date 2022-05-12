@@ -1,4 +1,3 @@
-// define default options
 var globals = {
     baseIMG: new Image(),
     threshold: 222,
@@ -16,49 +15,21 @@ function loadImage(imageURI, onLoad) {
     img.src = imageURI;
 }
 
-/*function displayProcessPreview(canvas, label) {
-    // this function helps show and label different steps of the process.
-    var rows = document.querySelectorAll("#processPreviews tr");
-    var processPreview = new Image();
-    processPreview.src = canvas.toDataURL();
-    processPreview.style.width = "200px";
-    var imagecell = document.createElement("td");
-    imagecell.appendChild(processPreview);
-    imagecell.style.padding = 0;
-    var textcell = document.createElement("td");
-    textcell.innerHTML = label;
-    textcell.style.padding = 0;
-    textcell.style.textAlign = "center";
-    rows[0].appendChild(imagecell);
-    rows[1].appendChild(textcell);
-}*/
-
 function mainProcess(inputData=globals, callback=function() {}, layerOnly=false) {
     document.querySelector("#waitCover").style.display = "block";
     if (typeof inputData == "string") {
         inputData = JSON.parse(inputData);
     }
-    /*
-    // clear old process previews, if any
-    for (var tr of document.querySelectorAll("#processPreviews tr")) {
-        tr.innerHTML = "";
-    }
-    */
+    
     var canv = document.querySelector("canvas");
     var ctx = canv.getContext("2d");
-    ctx.restore(); // if possible
+    ctx.restore();
     ctx.drawImage(inputData.baseIMG, 0, 0);
-    ctx.save(); // save default context
+    ctx.save();
 
-    //displayProcessPreview(canv, "original image");
-
-    // darken darkest pixels based on "threshold" input - isolates brightest pixels (hopefully, the light sources)
     isolateHighlights(ctx, inputData.threshold);
 
-    //displayProcessPreview(canv, "light sources");
-
     if (inputData.colorize) {
-        // Override light color based on user input
         ctx.restore();
         ctx.save();
         ctx.fillStyle = "rgb(128, 128, 128)";
@@ -70,9 +41,7 @@ function mainProcess(inputData=globals, callback=function() {}, layerOnly=false)
     }
 
     loadImage(canv.toDataURL(), function() {
-        // blur the light sources by different amounts and composite them together, resulting in a diffused light bloom effect
         for (var i = 0; i < inputData.glowLayers; i++) {
-            // setting the blur amount based on a quadratic function gives a very nice, diffused-looking result
             var blurRadius = (i + 1) ** 2 * inputData.glowRadius;
             ctx.restore();
             ctx.save();
@@ -81,14 +50,12 @@ function mainProcess(inputData=globals, callback=function() {}, layerOnly=false)
             ctx.drawImage(this, 0, 0);
         }
 
-        //displayProcessPreview(canv, "lights + glow");
         if (layerOnly) {
             callback();
             document.querySelector("#waitCover").style.display = "none";
             return;
         }
 
-        // composite together glows + original image, resulting in final output
         ctx.restore();
         ctx.save();
         ctx.globalCompositeOperation = "screen";
@@ -100,15 +67,7 @@ function mainProcess(inputData=globals, callback=function() {}, layerOnly=false)
     
 }
 
-//mainProcess(JSON.stringify(globals));
-
-// GUI - uses a library that I built
 ygui.buildGUIsection([
-    /*{
-        "label": "Base image",
-        "type": "file",
-        "id": "imgupload"
-    },*/
     {
         "label": "Threshold",
         "type": "number",
@@ -176,7 +135,6 @@ for (var x of ["threshold", "glowLayers", "glowRadius", "colorize", "tintcolor",
         }
     });
 }
-// handle image upload
 document.querySelector("#imgupload").addEventListener("change", function() {
     var file = this.files[0];
     var fR = new FileReader();
