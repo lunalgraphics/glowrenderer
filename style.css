@@ -24,12 +24,12 @@ body {
 }
 
 canvas {
-    max-width: calc(100vw - 424px);
-    max-height: calc(100vh - 10px)
+    max-width: calc(100vw - 300px);
+    max-height: calc(100vh - 50px);
 }
 
 #guicontainer {
-    width: 420px; box-sizing: border-box; position: fixed; right: 0; top: 0; height: 100vh;
+    width: 250px; box-sizing: border-box; position: fixed; right: 0; top: 0; height: 100vh;
 }
 
 #exportpanel {
@@ -83,4 +83,8 @@ button {
 
 button:hover {
     background-color: #4B0057;
+}
+
+#exportpanel {
+    padding-top: 15px;
 }
