@@ -184,10 +184,13 @@ document.querySelector("#colorize").addEventListener("change", function(e) {
     if (this.checked) {
         document.querySelector("#tintcolor").removeAttribute("disabled");
         document.querySelector("label[for=tintcolor]").style.opacity = "";
+        document.querySelector("#tintcolor").style.opacity = "";
     }
     else {
         document.querySelector("#tintcolor").setAttribute("disabled", "true");
         document.querySelector("label[for=tintcolor]").style.opacity = "0.5";
+        document.querySelector("#tintcolor").style.opacity = "0.5";
     }
 });
 document.querySelector("label[for=tintcolor]").style.opacity = "0.5";
+        document.querySelector("#tintcolor").style.opacity = "0.5";
