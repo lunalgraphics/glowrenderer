@@ -92,7 +92,7 @@ ygui.buildGUIsection([
         "attr": {}
     },
     {
-        "label": "Color",
+        "label": " - Color",
         "type": "color",
         "id": "tintcolor",
         "attr": { "value": "#FF5500", "disabled": "true" }
