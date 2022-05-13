@@ -83,7 +83,7 @@ ygui.buildGUIsection([
         "label": "Radius",
         "type": "number",
         "id": "glowRadius",
-        "attr": { "value": 1 }
+        "attr": { "value": 1, step: 0.1 }
     },
     {
         "label": "Colorize?",
