@@ -99,3 +99,14 @@ button:hover {
 #exportpanel {
     padding-top: 15px;
 }
+
+#creditsbox {
+    position: absolute;
+    width: 100%;
+    bottom: 25px;
+    left: 0;
+    text-align: center;
+    color: whitesmoke;
+    font-family: var(--ux-font);
+    font-size: 10px;
+}
