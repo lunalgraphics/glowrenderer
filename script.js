@@ -193,4 +193,4 @@ document.querySelector("#colorize").addEventListener("change", function(e) {
     }
 });
 document.querySelector("label[for=tintcolor]").style.opacity = "0.5";
-        document.querySelector("#tintcolor").style.opacity = "0.5";
+document.querySelector("#tintcolor").style.opacity = "0.5";
