@@ -6,6 +6,7 @@ var globals = {
     colorize: false,
     tintcolor: "#FF5500",
     showPreview: true,
+    imgname: "",
 };
 
 function loadImage(imageURI, onLoad) {
@@ -151,6 +152,8 @@ document.querySelector("#imgupload").addEventListener("change", function() {
         });
     });
     fR.readAsDataURL(file);
+    
+    globals.imgname = file.name.split(".").slice(0, -1).join(".");
 });
 document.querySelector("#uploadButton").addEventListener("click", function() {
     document.querySelector("#imgupload").click();
@@ -159,7 +162,7 @@ document.querySelector("#uploadButton").addEventListener("click", function() {
 function canvDownload() {
     var a = document.createElement("a");
     a.href = document.querySelector("canvas").toDataURL();
-    a.download = "superbloomed.png";
+    a.download = globals.imgname + "-superbloomed.png";
     a.click();
 }
 var exportpanel = document.createElement("div");
