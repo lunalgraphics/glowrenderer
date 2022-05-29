@@ -32,10 +32,9 @@ function mainProcess(inputData=globals, callback=function() {}, layerOnly=false)
     if (inputData.colorize) {
         ctx.restore();
         ctx.save();
-        ctx.fillStyle = "rgb(128, 128, 128)";
+        ctx.fillStyle = inputData.tintcolor;
         ctx.globalCompositeOperation = "color";
         ctx.fillRect(0, 0, canv.width, canv.height);
-        ctx.fillStyle = inputData.tintcolor;
         ctx.globalCompositeOperation = "multiply";
         ctx.fillRect(0, 0, canv.width, canv.height);
     }
