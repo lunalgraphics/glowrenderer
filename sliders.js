@@ -16,6 +16,7 @@ for (var nuin of numberInputs) {
         document.getElementById(this.dataset.ID).dispatchEvent(evt); // extreme value theorem
     });
     slider.style.accentColor = "var(--special-color)";
-    slider.style.width = "80px";
+    slider.style.width = "69px";
+    slider.style.marginRight = "5px";
     slider.parentElement.style.width = "143px";
 }
