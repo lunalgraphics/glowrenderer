@@ -164,7 +164,7 @@ document.querySelector("#uploadButton").addEventListener("click", function() {
 
 function canvDownload() {
     var a = document.createElement("a");
-    a.href = document.querySelector("canvas").toDataURL();
+    a.href = document.querySelectorAll("canvas")[1].toDataURL();
     a.download = globals.imgname + "-superbloomed.png";
     a.click();
 }
