@@ -11,8 +11,8 @@ for (var nuin of numberInputs) {
     slider.addEventListener("input", function() {
         document.getElementById(this.dataset.ID).value = this.value;
     });
-    slider.addEventListener("change", function() {
-        var evt = new Event("change");
+    slider.addEventListener("input", function() {
+        var evt = new Event("input");
         document.getElementById(this.dataset.ID).dispatchEvent(evt); // extreme value theorem
     });
     slider.style.accentColor = "var(--special-color)";
