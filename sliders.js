@@ -19,4 +19,7 @@ for (var nuin of numberInputs) {
     slider.style.width = "69px";
     slider.style.marginRight = "5px";
     slider.parentElement.style.width = "143px";
+    nuin.addEventListener("input", (function() {
+        this.slider.value = this.nuin.value;
+    }).bind({nuin:nuin,slider:slider}));
 }
