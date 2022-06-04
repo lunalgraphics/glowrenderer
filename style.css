@@ -77,6 +77,10 @@ canvas {
     font-family: var(--ux-font);
 }
 
+.ygui-table tr td:nth-of-type(2) {
+    text-align: right;
+}
+
 button {
     font-family: var(--ux-font);
     color: whitesmoke;
