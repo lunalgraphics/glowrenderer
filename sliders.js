@@ -13,5 +13,12 @@ for (var nuin of numberInputs) {
     slider.setAttribute("max", nuin.getAttribute("max"));
     slider.setAttribute("step", nuin.getAttribute("step"));
     td.appendChild(slider);
-    slider.addEventListener("input", new Function(`document.getElementById("${nuin.id}").value=this.value`));
+    slider.dataset.ID = nuin.id;
+    slider.addEventListener("input", function() {
+        document.getElementById(this.dataset.ID).value = this.value;
+    });
+    slider.addEventListener("change", function() {
+        var evt = new Event("change");
+        document.getElementById(this.dataset.ID).dispatchEvent(evt); // extreme value theorem
+    });
 }
