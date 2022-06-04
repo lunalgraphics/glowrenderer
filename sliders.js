@@ -13,4 +13,5 @@ for (var nuin of numberInputs) {
     slider.setAttribute("max", nuin.getAttribute("max"));
     slider.setAttribute("step", nuin.getAttribute("step"));
     td.appendChild(slider);
+    slider.addEventListener("input", new Function(`document.getElementById("${nuin.id}").value=this.value`));
 }
