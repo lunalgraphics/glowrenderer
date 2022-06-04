@@ -77,13 +77,13 @@ ygui.buildGUIsection([
         "label": "Depth",
         "type": "number",
         "id": "glowLayers",
-        "attr": { "value": 16 }
+        "attr": { "value": 16, "min": 0, "max": 30 }
     },
     {
         "label": "Radius",
         "type": "number",
         "id": "glowRadius",
-        "attr": { "value": 1, step: 0.1 }
+        "attr": { "value": 1, "step": 0.1, "min": 0, "max": 20 }
     },
     {
         "label": "Colorize?",
