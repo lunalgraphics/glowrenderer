@@ -22,6 +22,7 @@ function mainProcess(inputData=globals, callback=function() {}, layerOnly=false)
     }
     
     var canv = document.querySelector("canvas");
+    canv.style.display = "none";
     var ctx = canv.getContext("2d");
     ctx.restore();
     ctx.drawImage(inputData.baseIMG, 0, 0);
@@ -38,31 +39,34 @@ function mainProcess(inputData=globals, callback=function() {}, layerOnly=false)
         ctx.globalCompositeOperation = "multiply";
         ctx.fillRect(0, 0, canv.width, canv.height);
     }
+    
+    var canv2 = document.querySelectorAll("canvas")[1];
+    canv2.width = canv.width;
+    canv2.height = canv.height;
+    var ctx2 = canv2.getContext("2d");
 
-    loadImage(canv.toDataURL(), function() {
-        for (var i = 0; i < inputData.glowLayers; i++) {
-            var blurRadius = (i + 1) ** 2 * inputData.glowRadius;
-            ctx.restore();
-            ctx.save();
-            ctx.filter = `blur(${blurRadius}px)`;
-            ctx.globalCompositeOperation = "screen";
-            ctx.drawImage(this, 0, 0);
-        }
+    for (var i = 0; i < inputData.glowLayers; i++) {
+        var blurRadius = (i + 1) ** 2 * inputData.glowRadius;
+        ctx2.restore();
+        ctx2.save();
+        ctx2.filter = `blur(${blurRadius}px)`;
+        ctx2.globalCompositeOperation = "screen";
+        ctx2.drawImage(canv, 0, 0);
+    }
 
-        if (layerOnly) {
-            callback();
-            document.querySelector("#waitCover").style.display = "none";
-            return;
-        }
-
-        ctx.restore();
-        ctx.save();
-        ctx.globalCompositeOperation = "screen";
-        ctx.drawImage(inputData.baseIMG, 0, 0);
-        
+    if (layerOnly) {
         callback();
         document.querySelector("#waitCover").style.display = "none";
-    });
+        return;
+    }
+
+    ctx2.restore();
+    ctx2.save();
+    ctx2.globalCompositeOperation = "screen";
+    ctx2.drawImage(inputData.baseIMG, 0, 0);
+
+    callback();
+    document.querySelector("#waitCover").style.display = "none";
     
 }
 
