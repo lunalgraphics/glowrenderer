@@ -8,10 +8,10 @@ for (var nuin of numberInputs) {
     tr.appendChild(td);
     var slider = document.createElement("input");
     slider.setAttribute("type", "range");
-    slider.setAttribute("value", nuin.getAttribute("value"));
     slider.setAttribute("min", nuin.getAttribute("min"));
     slider.setAttribute("max", nuin.getAttribute("max"));
     slider.setAttribute("step", nuin.getAttribute("step"));
+    slider.setAttribute("value", nuin.getAttribute("value"));
     td.appendChild(slider);
     slider.dataset.ID = nuin.id;
     slider.addEventListener("input", function() {
