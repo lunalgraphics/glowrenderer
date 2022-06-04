@@ -110,7 +110,7 @@ ygui.buildGUIsection([
 ], document.querySelector("#guicontainer"));
 for (var x of ["threshold", "glowLayers", "glowRadius", "colorize", "tintcolor", "showPreview"]) {
     var inputElem = document.querySelector("#" + x);
-    inputElem.addEventListener("change", function(e) {
+    inputElem.addEventListener("input", function(e) {
         var y = this.id;
         switch (this.getAttribute("type")) {
             case "number":
