@@ -23,3 +23,7 @@ for (var nuin of numberInputs) {
         this.slider.value = this.nuin.value;
     }).bind({nuin:nuin,slider:slider}));
 }
+
+// couldn't fit in in script.js
+document.querySelector("input[data--i-d=tintopacity]").style.opacity = "0.5";
+document.querySelector("input[data--i-d=tintopacity]").setAttribute("disabled", "true");

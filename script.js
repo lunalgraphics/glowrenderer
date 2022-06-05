@@ -9,6 +9,7 @@ var globals = {
     imgname: "",
     saturation: 100,
     hue: 0,
+    tintopacity: 100,
 };
 
 function loadImage(imageURI, onLoad) {
@@ -35,6 +36,7 @@ function mainProcess(inputData=globals, callback=function() {}, layerOnly=false)
     if (inputData.colorize) {
         ctx.restore();
         ctx.save();
+        ctx.globalAlpha = inputData.tintopacity / 100;
         ctx.fillStyle = inputData.tintcolor;
         ctx.globalCompositeOperation = "color";
         ctx.fillRect(0, 0, canv.width, canv.height);
@@ -104,6 +106,12 @@ ygui.buildGUIsection([
         "attr": { "value": "#FF5500", "disabled": "true" }
     },
     {
+        "label": " - Opacity",
+        "type": "number",
+        "id": "tintopacity",
+        "attr": { "value": 100, "min": 0, "max": 100, "disabled": "true" }
+    },
+    {
         "label": "Saturation",
         "type": "number",
         "id": "saturation",
@@ -122,7 +130,7 @@ ygui.buildGUIsection([
         "attr": { "checked": true }
     }
 ], document.querySelector("#guicontainer"));
-for (var x of ["threshold", "glowLayers", "glowRadius", "colorize", "tintcolor", "showPreview", "saturation", "hue"]) {
+for (var x of ["threshold", "glowLayers", "glowRadius", "colorize", "tintcolor", "showPreview", "saturation", "hue", "tintopacity"]) {
     var inputElem = document.querySelector("#" + x);
     inputElem.addEventListener("input", function(e) {
         var y = this.id;
@@ -150,6 +158,7 @@ for (var x of ["threshold", "glowLayers", "glowRadius", "colorize", "tintcolor",
                 tintcolor: "#000000",
                 saturation: 100,
                 hue: 0,
+                tintopacity: 100,
             });
         }
     });
@@ -207,12 +216,24 @@ document.querySelector("#colorize").addEventListener("change", function(e) {
         document.querySelector("#tintcolor").removeAttribute("disabled");
         document.querySelector("label[for=tintcolor]").style.opacity = "";
         document.querySelector("#tintcolor").style.opacity = "";
+        document.querySelector("#tintopacity").removeAttribute("disabled");
+        document.querySelector("label[for=tintopacity]").style.opacity = "";
+        document.querySelector("#tintopacity").style.opacity = "";
+        document.querySelector("input[data--i-d=tintopacity]").style.opacity = "";
+        document.querySelector("input[data--i-d=tintopacity]").removeAttribute("disabled");
     }
     else {
         document.querySelector("#tintcolor").setAttribute("disabled", "true");
         document.querySelector("label[for=tintcolor]").style.opacity = "0.5";
         document.querySelector("#tintcolor").style.opacity = "0.5";
+        document.querySelector("#tintopacity").setAttribute("disabled", "true");
+        document.querySelector("label[for=tintopacity]").style.opacity = "0.5";
+        document.querySelector("#tintopacity").style.opacity = "0.5";
+        document.querySelector("input[data--i-d=tintopacity]").setAttribute("disabled", "true");
+        document.querySelector("input[data--i-d=tintopacity]").style.opacity = "0.5";
     }
 });
 document.querySelector("label[for=tintcolor]").style.opacity = "0.5";
 document.querySelector("#tintcolor").style.opacity = "0.5";
+document.querySelector("label[for=tintopacity]").style.opacity = "0.5";
+document.querySelector("#tintopacity").style.opacity = "0.5";
