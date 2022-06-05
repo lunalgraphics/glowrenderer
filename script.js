@@ -8,6 +8,7 @@ var globals = {
     showPreview: true,
     imgname: "",
     saturation: 100,
+    hue: 0,
 };
 
 function loadImage(imageURI, onLoad) {
@@ -50,7 +51,7 @@ function mainProcess(inputData=globals, callback=function() {}, layerOnly=false)
         var blurRadius = (i + 1) ** 2 * inputData.glowRadius;
         ctx2.restore();
         ctx2.save();
-        ctx2.filter = `saturate(${inputData.saturation}%) blur(${blurRadius}px)`;
+        ctx2.filter = `hue-rotate(${inputData.hue}deg) saturate(${inputData.saturation}%) blur(${blurRadius}px)`;
         ctx2.globalCompositeOperation = "screen";
         ctx2.drawImage(canv, 0, 0);
     }
@@ -109,13 +110,19 @@ ygui.buildGUIsection([
         "attr": { "value": 100, "min": 0, "max": 100 }
     },
     {
+        "label": "Hue Shift",
+        "type": "number",
+        "id": "hue",
+        "attr": { "value": 0, "min": -180, "max": 180 }
+    },
+    {
         "label": "Preview",
         "type": "checkbox",
         "id": "showPreview",
         "attr": { "checked": true }
     }
 ], document.querySelector("#guicontainer"));
-for (var x of ["threshold", "glowLayers", "glowRadius", "colorize", "tintcolor", "showPreview", "saturation"]) {
+for (var x of ["threshold", "glowLayers", "glowRadius", "colorize", "tintcolor", "showPreview", "saturation", "hue"]) {
     var inputElem = document.querySelector("#" + x);
     inputElem.addEventListener("input", function(e) {
         var y = this.id;
@@ -142,6 +149,7 @@ for (var x of ["threshold", "glowLayers", "glowRadius", "colorize", "tintcolor",
                 colorize: false,
                 tintcolor: "#000000",
                 saturation: 100,
+                hue: 0,
             });
         }
     });
