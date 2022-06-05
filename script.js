@@ -7,6 +7,7 @@ var globals = {
     tintcolor: "#FF5500",
     showPreview: true,
     imgname: "",
+    saturation: 100,
 };
 
 function loadImage(imageURI, onLoad) {
@@ -49,7 +50,7 @@ function mainProcess(inputData=globals, callback=function() {}, layerOnly=false)
         var blurRadius = (i + 1) ** 2 * inputData.glowRadius;
         ctx2.restore();
         ctx2.save();
-        ctx2.filter = `blur(${blurRadius}px)`;
+        ctx2.filter = `saturate(${inputData.saturation}%) blur(${blurRadius}px)`;
         ctx2.globalCompositeOperation = "screen";
         ctx2.drawImage(canv, 0, 0);
     }
@@ -102,13 +103,19 @@ ygui.buildGUIsection([
         "attr": { "value": "#FF5500", "disabled": "true" }
     },
     {
+        "label": "Saturation",
+        "type": "number",
+        "id": "saturation",
+        "attr": { "value": 100, "min": 0, "max": 100 }
+    },
+    {
         "label": "Preview",
         "type": "checkbox",
         "id": "showPreview",
         "attr": { "checked": true }
     }
 ], document.querySelector("#guicontainer"));
-for (var x of ["threshold", "glowLayers", "glowRadius", "colorize", "tintcolor", "showPreview"]) {
+for (var x of ["threshold", "glowLayers", "glowRadius", "colorize", "tintcolor", "showPreview", "saturation"]) {
     var inputElem = document.querySelector("#" + x);
     inputElem.addEventListener("input", function(e) {
         var y = this.id;
@@ -133,7 +140,8 @@ for (var x of ["threshold", "glowLayers", "glowRadius", "colorize", "tintcolor",
                 glowLayers: 0,
                 glowRadius: 0,
                 colorize: false,
-                tintcolor: "#000000"
+                tintcolor: "#000000",
+                saturation: 100,
             });
         }
     });
