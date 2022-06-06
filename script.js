@@ -31,7 +31,12 @@ function mainProcess(inputData=globals, callback=function() {}, layerOnly=false)
     ctx.drawImage(inputData.baseIMG, 0, 0);
     ctx.save();
 
-    isolateHighlights(ctx, inputData.threshold);
+    if (inputData.threshold < 255) {
+        isolateHighlights(ctx, inputData.threshold);
+    }
+    else {
+        ctx.fillRect(0, 0, canv.width, canv.height);
+    }
 
     if (inputData.colorize) {
         ctx.restore();
