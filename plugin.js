@@ -1,5 +1,5 @@
 if ((new URLSearchParams(location.search)).get("isPhotopeaPlugin") == "yessir") {
-    //document.querySelector("#uploadButton").style.display = "none";
+    document.querySelector("#uploadButton").style.display = "none";
     document.querySelector("#exportpanel").innerHTML = "";
     var finishButton = document.createElement("button");
     finishButton.innerText = "Add to Document";
