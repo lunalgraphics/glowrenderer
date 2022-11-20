@@ -10,7 +10,7 @@
   </head>
   <body style="margin: 0; width: 100vw; height: 100vh;">
     <div id="guicontainer"></div>
-    <div style="position: fixed; left: 0; top: 0; height: 100vh; width: calc(100vw - 250px); text-align: center;">
+    <div style="position: fixed; left: 0; top: 0; height: 100vh; width: calc(100vw - 250px); text-align: center;" id="previewSpace">
         <div class="centeredblock">
             <canvas></canvas>
             <canvas id="finalcanv"></canvas>
@@ -18,7 +18,7 @@
     </div>
     <div id="waitCover"></div>
     <div id="landingscreen">
-        <div style="position: absolute; width: 500px; right: 0; top: 0; height: 100vh;">
+        <div style="position: absolute; width: 500px; right: 0; top: 0; height: 100vh;" id="lsRight">
             <div class="centeredblock" style="text-align: center;">
                 <input type="file" accept="image/*" id="imgupload" />
                 
