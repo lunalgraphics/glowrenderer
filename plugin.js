@@ -7,7 +7,7 @@ if ((new URLSearchParams(location.search)).get("isPhotopeaPlugin") == "yessir") 
     finishButton.addEventListener("click", function() {
         mainProcess(globals, async function() {
             await Photopea.runScript(window.parent, `app.open("${document.querySelectorAll("canvas")[1].toDataURL()}", null, true);`);
-            await Photopea.runScript(window.parent, `app.activeDocument.activeLayer.blendMode = "screen";`);
+            await Photopea.runScript(window.parent, `app.activeDocument.activeLayer.blendMode = "scrn";`);
         }, true);
     });
     
