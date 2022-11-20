@@ -131,7 +131,7 @@ button:hover {
         overflow-y: scroll;
     }
     #guicontainer::-webkit-scrollbar {
-        width: 10px;
+        width: 6.9px;
     }
     #guicontainer::-webkit-scrollbar-track {
         background-color: #272727;
