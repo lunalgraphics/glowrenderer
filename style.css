@@ -115,3 +115,28 @@ button:hover {
     font-family: var(--ux-font);
     font-size: 10px;
 }
+
+@media only screen and (max-width: 500px) {
+    #lsRight {
+        width: 100vw!important;
+    }
+    #lsRight img {
+        width: 100vw;
+    }
+    
+    #guicontainer {
+        width: 100vw;
+        top: 70vh;
+        height: 30vh;
+        overflow-y: scroll;
+    }
+    
+    #previewSpace {
+        width: 100vw!important;
+        height: 70vh!important;
+    }
+    #finalcanv {
+        max-width: calc(100vw - 50px)!important;
+        max-height: calc(70vh - 50px)!important;
+    }
+}
