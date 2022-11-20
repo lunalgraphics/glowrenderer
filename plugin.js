@@ -10,4 +10,21 @@ if ((new URLSearchParams(location.search)).get("isPhotopeaPlugin") == "yessir") 
             await Photopea.runScript(window.parent, `app.activeDocument.activeLayer.blendMode = "screen";`);
         }, true);
     });
+    
+    Photopea.runScript(window.parent, "app.activeDocument.saveToOE('png')").then(function(data) {
+        var buffer = data[0];
+        var imageuri = "data:image/png;base64," + base64ArrayBuffer(buffer);
+        
+        var img = new Image();
+        img.src = imageuri;
+        globals.baseIMG = img;
+        img.addEventListener("load", function() {
+            document.querySelector("canvas").width = this.width;
+            document.querySelector("canvas").height = this.height;
+            mainProcess(globals);
+            document.querySelector("#landingscreen").style.display = "none";
+        });
+
+        globals.imgname = "thecoolness";
+    });
 }
