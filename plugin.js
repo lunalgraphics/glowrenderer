@@ -8,6 +8,7 @@ if ((new URLSearchParams(location.search)).get("isPhotopeaPlugin") == "yessir") 
         mainProcess(globals, async function() {
             await Photopea.runScript(window.parent, `app.open("${document.querySelectorAll("canvas")[1].toDataURL()}", null, true);`);
             await Photopea.runScript(window.parent, `app.activeDocument.activeLayer.blendMode = "scrn";`);
+            await Photopea.runScript(window.parent, `app.activeDocument.activeLayer.name = "SuperBloom";`);
         }, true);
     });
     
