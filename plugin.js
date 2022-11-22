@@ -6,9 +6,18 @@ if ((new URLSearchParams(location.search)).get("isPhotopeaPlugin") == "yessir") 
     document.querySelector("#exportpanel").appendChild(finishButton);
     finishButton.addEventListener("click", function() {
         mainProcess(globals, async function() {
+            var layersCount = (await Photopea.runScript(window.parent, `app.echoToOE(app.activeDocument.layers.length);`))[0];
+            var layerCheckInterval = async function() {
+                var newLayersCount = (await Photopea.runScript(window.parent, `app.echoToOE(app.activeDocument.layers.length);`))[0];
+                if (newLayersCount == layersCount + 1) {
+                    await Photopea.runScript(window.parent, `app.activeDocument.activeLayer.blendMode = "scrn";`);
+                    await Photopea.runScript(window.parent, `app.activeDocument.activeLayer.name = "SuperBloom";`);
+                    return;
+                }
+                else setTimeout(layerCheckInterval, 50);
+            };
+            layerCheckInterval();
             await Photopea.runScript(window.parent, `app.open("${document.querySelectorAll("canvas")[1].toDataURL()}", null, true);`);
-            await Photopea.runScript(window.parent, `app.activeDocument.activeLayer.blendMode = "scrn";`);
-            await Photopea.runScript(window.parent, `app.activeDocument.activeLayer.name = "SuperBloom";`);
         }, true);
     });
     
