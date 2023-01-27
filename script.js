@@ -54,7 +54,7 @@ function mainProcess(inputData=globals, callback=function() {}, layerOnly=false)
     canv2.height = canv.height;
     var ctx2 = canv2.getContext("2d");
 
-    for (var i = 0; i < inputData.glowLayers; i++) {
+    for (var i = 1; i < inputData.glowLayers; i++) {
         var blurRadius = (i + 1) ** 2 * inputData.glowRadius;
         ctx2.restore();
         ctx2.save();
