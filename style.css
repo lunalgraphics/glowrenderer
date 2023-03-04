@@ -72,6 +72,11 @@ canvas {
     font-family: var(--ux-font);
 }
 
+select.ygui-input {
+    width: auto!important;
+    text-align: left;
+}
+
 .ygui-label {
     color: whitesmoke;
     font-family: var(--ux-font);

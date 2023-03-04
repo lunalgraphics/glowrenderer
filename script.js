@@ -130,9 +130,10 @@ ygui.buildGUIsection([
     },
     {
         "label": "Preview",
-        "type": "checkbox",
+        "type": "select",
         "id": "showPreview",
-        "attr": { "checked": true }
+        "attr": { "type": "select" },
+        "options": ["Full", "None", "Glow Only"]
     }
 ], document.querySelector("#guicontainer"));
 for (var x of ["threshold", "glowLayers", "glowRadius", "colorize", "tintcolor", "showPreview", "saturation", "hue", "tintopacity"]) {
@@ -146,13 +147,15 @@ for (var x of ["threshold", "glowLayers", "glowRadius", "colorize", "tintcolor",
             case "checkbox":
                 globals[y] = this.checked;
                 break;
+            case "select":
+                globals[y] = this.value;
+                break;
             default:
                 globals[y] = this.value;
                 break;
         }
-        if (globals.showPreview) {
-            mainProcess(globals);
-        }
+        if (globals.showPreview == "Full") mainProcess(globals);
+        else if (globals.showPreview == "Glow Only") mainProcess(globals, function() {  }, true);
         else {
             mainProcess({
                 baseIMG: globals.baseIMG,
