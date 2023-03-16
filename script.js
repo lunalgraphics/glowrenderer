@@ -5,7 +5,7 @@ var globals = {
     glowRadius: 1,
     colorize: false,
     tintcolor: "#FF5500",
-    showPreview: true,
+    showPreview: "Full",
     imgname: "",
     saturation: 100,
     hue: 0,
