@@ -224,6 +224,8 @@ var layerexportbtn = document.createElement("button");
 layerexportbtn.innerText = "Export Bloom Layer";
 exportpanel.appendChild(layerexportbtn);
 layerexportbtn.addEventListener("click", function() {
+    document.querySelector("#showPreview").value = "Glow Only";
+    globals.showPreview = "Glow Only";
     mainProcess(globals, canvDownload, true);
 });
 
