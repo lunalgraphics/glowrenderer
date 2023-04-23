@@ -208,6 +208,23 @@ function canvDownload() {
     a.href = document.querySelectorAll("canvas")[1].toDataURL();
     a.download = globals.imgname + "-superbloomed.png";
     a.click();
+    
+    if (globals.showPreview == "Full") mainProcess(globals);
+    else if (globals.showPreview == "Glow Only") mainProcess(globals, function() {  }, true);
+    else {
+        mainProcess({
+            baseIMG: globals.baseIMG,
+            threshold: 255,
+            glowLayers: 0,
+            glowRadius: 0,
+            colorize: false,
+            tintcolor: "#000000",
+            saturation: 100,
+            hue: 0,
+            tintopacity: 100,
+            brightness: 100,
+        });
+    }
 }
 var exportpanel = document.createElement("div");
 exportpanel.id = "exportpanel";
@@ -216,8 +233,6 @@ var fullexportbtn = document.createElement("button");
 fullexportbtn.innerText = "Export Full Image";
 exportpanel.appendChild(fullexportbtn);
 fullexportbtn.addEventListener("click", function() {
-    document.querySelector("#showPreview").value = "Full";
-    globals.showPreview = "Full";
     mainProcess(globals, canvDownload, false);
 });
 var br = document.createElement("br");
@@ -226,8 +241,6 @@ var layerexportbtn = document.createElement("button");
 layerexportbtn.innerText = "Export Bloom Layer";
 exportpanel.appendChild(layerexportbtn);
 layerexportbtn.addEventListener("click", function() {
-    document.querySelector("#showPreview").value = "Glow Only";
-    globals.showPreview = "Glow Only";
     mainProcess(globals, canvDownload, true);
 });
 
