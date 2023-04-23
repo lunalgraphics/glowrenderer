@@ -208,6 +208,23 @@ function canvDownload() {
     a.href = document.querySelectorAll("canvas")[1].toDataURL();
     a.download = globals.imgname + "-superbloomed.png";
     a.click();
+    
+    if (globals.showPreview == "Full") mainProcess(globals);
+    else if (globals.showPreview == "Glow Only") mainProcess(globals, function() {  }, true);
+    else {
+        mainProcess({
+            baseIMG: globals.baseIMG,
+            threshold: 255,
+            glowLayers: 0,
+            glowRadius: 0,
+            colorize: false,
+            tintcolor: "#000000",
+            saturation: 100,
+            hue: 0,
+            tintopacity: 100,
+            brightness: 100,
+        });
+    }
 }
 var exportpanel = document.createElement("div");
 exportpanel.id = "exportpanel";
