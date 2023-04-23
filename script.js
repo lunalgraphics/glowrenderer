@@ -216,8 +216,6 @@ var fullexportbtn = document.createElement("button");
 fullexportbtn.innerText = "Export Full Image";
 exportpanel.appendChild(fullexportbtn);
 fullexportbtn.addEventListener("click", function() {
-    document.querySelector("#showPreview").value = "Full";
-    globals.showPreview = "Full";
     mainProcess(globals, canvDownload, false);
 });
 var br = document.createElement("br");
