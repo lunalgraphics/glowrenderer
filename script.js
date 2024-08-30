@@ -161,13 +161,6 @@ for (var x of ["threshold", "glowLayers", "glowRadius", "colorize", "tintcolor",
                 globals[y] = this.value;
                 break;
         }
-        unsavedChanges = true;
-    });
-}
-
-let unsavedChanges = true;
-function tick() {
-    if (unsavedChanges) {
         if (globals.showPreview == "Full") mainProcess(globals);
         else if (globals.showPreview == "Glow Only") mainProcess(globals, function() {  }, true);
         else {
@@ -184,11 +177,8 @@ function tick() {
                 brightness: 100,
             });
         }
-        unsavedChanges = false;
-    }
-    setTimeout(tick, 40);
+    });
 }
-
 document.querySelector("#imgupload").addEventListener("change", function() {
     var file = this.files[0];
     var fR = new FileReader();
@@ -201,8 +191,7 @@ document.querySelector("#imgupload").addEventListener("change", function() {
         image.addEventListener("load", function() {
             document.querySelector("canvas").width = this.width;
             document.querySelector("canvas").height = this.height;
-            unsavedChanges = true;
-            tick();
+            mainProcess(globals);
             document.querySelector("#landingscreen").style.display = "none";
         });
     });
